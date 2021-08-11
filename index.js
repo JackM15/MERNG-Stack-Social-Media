@@ -1,10 +1,9 @@
+require("dotenv").config()
 const { ApolloServer } = require("apollo-server")
 const mongoose = require("mongoose")
-require("dotenv").config()
 
 //GraphQL Type Definitions
 const typeDefs = require("./graphql/typeDefs")
-
 //GraphQL resolvers (whats returned when user queries)
 const resolvers = require("./graphql/resolvers")
 
