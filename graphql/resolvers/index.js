@@ -11,4 +11,10 @@ module.exports = {
     ...postsResolvers.Mutation,
     ...commentsResolvers.Mutation,
   },
+  //modifiers for types (get data from parent)
+  //calculating count of likes and comments
+  Post: {
+    likeCount: (parent) => parent.likes.length,
+    commentCount: (parent) => parent.comments.length,
+  },
 }
