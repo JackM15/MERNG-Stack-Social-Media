@@ -21,6 +21,10 @@ npm install
 ## Usage
 
 ```javascript
+//Create a dotenv file with the following keys
+MONGODB_CONNECTION_STRING = "your mongodb connection string here"
+JWT_SECRET_KEY = "your key here"
+
 //Get start the GraphQL server
 npm run start
 
