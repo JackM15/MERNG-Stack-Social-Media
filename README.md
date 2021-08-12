@@ -45,3 +45,4 @@ npm run start
 - React Router DOM
 - Apollo Client
 - Semantic UI React
+- Moment
