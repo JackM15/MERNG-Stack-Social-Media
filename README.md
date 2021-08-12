@@ -46,3 +46,4 @@ npm run start
 - Apollo Client
 - Semantic UI React
 - Moment
+- JWT Decode

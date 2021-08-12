@@ -1,8 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Menu } from "semantic-ui-react"
 import { Link } from "react-router-dom"
 
+import { AuthContext } from "../context/auth"
+
 export default function MenuBar() {
+  //user and logout for bar when user is logged in via context
+  const { user, logout } = useContext(AuthContext)
+
   //get page path name from browser and set as state for page highlighting on menu links
   const pathName = window.location.pathname
   const path = pathName === "/" ? "home" : pathName.substr(1)
@@ -10,7 +15,14 @@ export default function MenuBar() {
 
   const handleItemClick = (e, { name }) => setActiveItem(name)
 
-  return (
+  const menuBar = user ? (
+    <Menu pointing secondary size='massive' color='teal'>
+      <Menu.Item name={user.username} active as={Link} to='/' />
+      <Menu.Menu position='right'>
+        <Menu.Item name='logout' onClick={logout} />
+      </Menu.Menu>
+    </Menu>
+  ) : (
     <Menu pointing secondary size='massive' color='teal'>
       <Menu.Item
         name='home'
@@ -37,4 +49,5 @@ export default function MenuBar() {
       </Menu.Menu>
     </Menu>
   )
+  return menuBar
 }
