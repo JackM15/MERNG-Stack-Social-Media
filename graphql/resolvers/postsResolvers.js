@@ -35,6 +35,11 @@ module.exports = {
       //check if user is authenticated to create the post by getting user from the context
       const user = checkAuth(context)
 
+      //make sure post body isnt empty
+      if (body.trim() === "") {
+        throw new Error("Post body must not be empty!")
+      }
+
       //create the post object using the body (destructured above) and the user
       const newPost = new Post({
         body,
