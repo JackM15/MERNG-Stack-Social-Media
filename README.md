@@ -42,4 +42,6 @@ npm run start
 ## Client/Frontend made with
 
 - React
+- React Router DOM
 - Apollo Client
+- Semantic UI React
