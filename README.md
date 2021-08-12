@@ -21,16 +21,25 @@ npm install
 ## Usage
 
 ```javascript
-//Get start the server
+//Get start the GraphQL server
+npm run start
+
+//start the react server
+cd /client
 npm run start
 
 ```
 
-## Made with
+## Server made with
 
-GraphQL -
-MongoDB -
-Mongoose -
-Apollo Server-
-BcryptJS -
-JSONWebToken -
+- GraphQL
+- MongoDB
+- Mongoose
+- Apollo Server
+- BcryptJS
+- JSONWebToken
+
+## Client/Frontend made with
+
+- React
+- Apollo Client
