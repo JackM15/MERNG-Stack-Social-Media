@@ -16,6 +16,14 @@ Open a console window in the root directory and run:
 npm install
 ```
 
+CD into the Client directory and run:
+
+```bash
+npm install
+```
+
+You'll now have all the server and client dependencies installed
+
 ## Usage
 
 ```javascript
