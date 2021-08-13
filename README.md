@@ -18,7 +18,7 @@ npm install
 ## Usage
 
 ```javascript
-//Create a dotenv file with the following keys
+//Create a dotenv file with the following keys in the root directory of the project (.env)
 MONGODB_CONNECTION_STRING = "your mongodb connection string here"
 JWT_SECRET_KEY = "your key here"
 
