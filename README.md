@@ -22,10 +22,10 @@ npm install
 MONGODB_CONNECTION_STRING = "your mongodb connection string here"
 JWT_SECRET_KEY = "your key here"
 
-//Get start the GraphQL server
+//Start the GraphQL server from the root directory
 npm run start
 
-//start the react server
+//Open a second terminal in the root directory
 cd /client
 npm run start
 
