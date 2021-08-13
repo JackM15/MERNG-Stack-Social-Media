@@ -4,11 +4,8 @@ No real name for this project, it's just a social media app used to practice the
 
 ## Current Status
 
-Back end in place, with a GraphQL server.
-
-## TODO
-
-Front end react to fetch and query the server
+- Back end in place, with a GraphQL server, Complete
+- React Front End Complete
 
 ## Installation
 
