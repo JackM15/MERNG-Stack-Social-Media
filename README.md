@@ -10,6 +10,7 @@ No real name for this project, it's just a social media app used to practice the
 ## Installation
 
 Use NPM to get started.
+Open a console window in the root directory and run:
 
 ```bash
 npm install
