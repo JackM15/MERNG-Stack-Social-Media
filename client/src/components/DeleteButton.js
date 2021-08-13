@@ -1,6 +1,6 @@
 import { gql, useMutation } from "@apollo/client"
 import React, { useState } from "react"
-import { Button, Confirm, Icon } from "semantic-ui-react"
+import { Button, Confirm, Icon, Popup } from "semantic-ui-react"
 
 //Fetch posts so we can remove the post from the cache
 import { FETCH_POSTS_QUERY } from "../utils/graphql"
@@ -51,16 +51,23 @@ export default function DeleteButton({ postId, commentId, callback }) {
 
   return (
     <>
-      <Button
-        as='div'
-        color='red'
-        floated='right'
-        onClick={() => {
-          setConfirmOpen(true)
-        }}
-      >
-        <Icon name='trash' style={{ margin: 0 }} />
-      </Button>
+      <Popup
+        content={commentId ? "Delete Comment" : "Delete Post"}
+        inverted
+        trigger={
+          <Button
+            as='div'
+            color='red'
+            floated='right'
+            onClick={() => {
+              setConfirmOpen(true)
+            }}
+          >
+            <Icon name='trash' style={{ margin: 0 }} />
+          </Button>
+        }
+      />
+
       <Confirm
         open={confirmOpen}
         onCancel={() => setConfirmOpen(false)}
