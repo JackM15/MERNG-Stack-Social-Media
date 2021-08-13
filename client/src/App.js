@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 
 //Auth Provider
 import { AuthProvider } from "./context/auth"
+
+//Route that authorized users cant see (register and login mainly)
 import AuthRoute from "./utils/AuthRoute"
 
 //css
