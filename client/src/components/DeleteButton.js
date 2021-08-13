@@ -5,28 +5,33 @@ import { Button, Confirm, Icon } from "semantic-ui-react"
 //Fetch posts so we can remove the post from the cache
 import { FETCH_POSTS_QUERY } from "../utils/graphql"
 
-export default function DeleteButton({ postId, callback }) {
+export default function DeleteButton({ postId, commentId, callback }) {
   //delete modal state
   const [confirmOpen, setConfirmOpen] = useState(false)
 
-  const [deletePost] = useMutation(DELETE_POST_MUTATION, {
+  //select which mutation to use if comment or post based on props above
+  const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION
+
+  const [deletePostOrMutation] = useMutation(mutation, {
     update(proxy) {
       setConfirmOpen(false)
 
-      //get posts data
-      const data = proxy.readQuery({
-        query: FETCH_POSTS_QUERY,
-      })
+      if (!commentId) {
+        //get posts data
+        const data = proxy.readQuery({
+          query: FETCH_POSTS_QUERY,
+        })
 
-      //remove data and write to the cache/database
-      let newData = data.getPosts.filter((p) => p.id !== postId)
-      proxy.writeQuery({
-        query: FETCH_POSTS_QUERY,
-        data: {
-          ...data,
-          newData,
-        },
-      })
+        //remove data and write to the cache/database
+        let newData = data.getPosts.filter((p) => p.id !== postId)
+        proxy.writeQuery({
+          query: FETCH_POSTS_QUERY,
+          data: {
+            ...data,
+            newData,
+          },
+        })
+      }
 
       //if callback is passed in, call it (single post page redirect)
       if (callback) {
@@ -40,6 +45,7 @@ export default function DeleteButton({ postId, callback }) {
     refetchQueries: (refetchPosts) => [{ query: FETCH_POSTS_QUERY }],
     variables: {
       postId,
+      commentId,
     },
   })
 
@@ -58,15 +64,30 @@ export default function DeleteButton({ postId, callback }) {
       <Confirm
         open={confirmOpen}
         onCancel={() => setConfirmOpen(false)}
-        onConfirm={deletePost}
+        onConfirm={deletePostOrMutation}
       />
     </>
   )
 }
 
-//GraphQL Mutation
+//GraphQL Mutations
 const DELETE_POST_MUTATION = gql`
   mutation deletePost($postId: ID!) {
     deletePost(postId: $postId)
+  }
+`
+
+const DELETE_COMMENT_MUTATION = gql`
+  mutation deleteComment($postId: ID!, $commentId: ID!) {
+    deleteComment(postId: $postId, commentId: $commentId) {
+      id
+      comments {
+        id
+        username
+        createdAt
+        body
+      }
+      commentCount
+    }
   }
 `
